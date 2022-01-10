@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Scanner;
 
 public class MyServerSocket {
 	final int PORT = 50000;
@@ -39,7 +40,6 @@ public class MyServerSocket {
 
 			do {
 				message = dis.readUTF();
-				System.out.println("Recieved from Client: " + message);
 				dos.writeUTF("Received. Any other message? (EXIT to finish)");
 				dos.flush();
 			} while (!message.equals(EXIT));

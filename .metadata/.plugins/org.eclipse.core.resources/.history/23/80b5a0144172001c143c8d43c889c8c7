@@ -1,13 +1,10 @@
 package client;
 
 import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.util.Scanner;
 
 public class MyClientSocket {
 	final String HOST = "localhost";
@@ -31,28 +28,12 @@ public class MyClientSocket {
 
 	private void infoInterchange() {
 		try {
-			OutputStream os = socket.getOutputStream();
-			DataOutputStream dos = new DataOutputStream(os);
-
 			InputStream is = socket.getInputStream();
 			DataInputStream dis = new DataInputStream(is);
 			
-			String messageFromServer;
-			String message;
-			Scanner sc = new Scanner(System.in);
-			final String EXIT = "EXIT";
+			String messageFromServer = dis.readUTF();
 			
-			System.out.println("Any message to send? (EXIT to finish");
-			do {
-				message = sc.nextLine();
-				dos.writeUTF(message);
-				dos.flush();
-				messageFromServer = dis.readUTF();
-				System.out.println("message from server: " + messageFromServer);
-			} while (!message.equals(EXIT));
-			
-			dos.close();
-			os.close();
+			System.out.println(messageFromServer);
 			
 			dis.close();
 			is.close();

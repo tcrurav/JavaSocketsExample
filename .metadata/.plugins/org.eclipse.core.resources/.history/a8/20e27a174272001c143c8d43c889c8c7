@@ -39,7 +39,6 @@ public class MyServerSocket {
 
 			do {
 				message = dis.readUTF();
-				System.out.println("Recieved from Client: " + message);
 				dos.writeUTF("Received. Any other message? (EXIT to finish)");
 				dos.flush();
 			} while (!message.equals(EXIT));
